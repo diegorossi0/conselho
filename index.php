@@ -34,7 +34,11 @@
                 $linha = $resultado->fetch_array();
                 $_SESSION["logado"] = true;
                 $_SESSION["idProf"] = $linha["idProfessor"];
-                header("location: selecao.php");
+                if($senha == '1234'){
+                    header("location: trocasenha.php");
+                }else{
+                    header("location: selecao.php");
+                }                
             }else{
                 echo "<script>alert('Usuário e/ou senha incorreto');</script>";
             }
