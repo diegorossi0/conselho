@@ -28,6 +28,13 @@
 
             $resultado = $conexao->query($sql);
             $nome = "";
+            if($resultado->num_rows==0){
+                echo "<div class='well well-sm'>";
+                echo "Não existe apontamento para essa turma.";
+                echo "</div>";
+            }
+
+
             while($linha = $resultado->fetch_array()){                
                 if($nome != $linha["nomealuno"]){
                     if($nome!="")
