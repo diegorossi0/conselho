@@ -33,13 +33,45 @@
             while($linha = $resultado->fetch_array()){                
         ?>
         <tr>
-                <td><img src="<?php echo $linha["Imagem"]; ?>" class="img-thumbnail imagem tamanho-img"></td>
+                <td>
+                  <button type="button" class="btn btn-link btn-xs" data-toggle="modal" data-target="#exibeImagem" data-caminho="<?php echo $linha["Imagem"]; ?>">
+                    <img src="<?php echo $linha["Imagem"]; ?>" class="imagem tamanho-img"></td>
+                  </button>
                 <td><?php echo $linha["Nome"]; ?></td>
                 <td><a href="<?php echo "aluno.php?curso=".$idCurso."&turma=".$idTurma."&periodo=".$idPeriodo."&disciplina=".$idDisciplina."&aluno=".$linha["idAluno"] ?>" class="btn btn-success">Apontamentos</a></td>
         </tr>
 <?php
             }
     echo "</table>";
+    
+?>
+
+<!-- Modal -->
+<div class="modal fade" id="exibeImagem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+          
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<?php
     include "rodape.html";
 ?>
 
+<script>
+  $('#exibeImagem').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); //Capturar o botão que disparou o evento
+    var recipient = button.data('caminho'); //Extrair o valor do data-caminho
+    var modal = $(this);
+    modal.find('.modal-body').html("<center><img src='"+recipient+"'></center>");
+  })
+</script>
