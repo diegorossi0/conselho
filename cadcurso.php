@@ -10,7 +10,7 @@
             $idProfessor = $_SESSION["idProf"];
     ?>
     <form method="POST" enctype="multipart/form-data">
-        <label>Nome: </label><br>
+        <label>Nome do curso: </label><br>
         <input type="text" name="txtNome" class="form-control"><br>
         <input type="submit" value="Gravar" name="btGravar" class="btn btn-success pull-right"><br><br><br>
     </form>
@@ -28,7 +28,7 @@
                 
 
                 //inserir o problema
-                $sql = "INSERT INTO `professor`( `Nome`) VALUES ('$Nome')";
+                $sql = "INSERT INTO `curso`( `Nome`) VALUES ('$Nome')";
 
                 if($conexao->query($sql)){
                     echo "<div class='alert alert-success'>Operação efetuada com sucesso!
@@ -51,7 +51,7 @@
             <th>Nome</th>
         </tr>
         <?php
-            $sql="SELECT * FROM professor;";
+            $sql="SELECT * FROM curso;";
 
             $resultado = $conexao->query($sql);
             
